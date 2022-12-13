@@ -5,7 +5,7 @@ package FFSSM;
 
 import java.util.HashSet;
 import java.util.Set;
-
+import java.util.*;
 public class Club {
 
  
@@ -17,6 +17,13 @@ public class Club {
 
     public String telephone;
 
+    public ArrayList<Licence> licencesDelivrees = new ArrayList<>();
+    
+    public ArrayList<Embauche> employes = new ArrayList<>();
+    
+    public ArrayList<Plongee> activites = new ArrayList<>();
+    
+    
     public Club(Moniteur président, String nom, String telephone) {
         this.president = président;
         this.nom = nom;
@@ -30,8 +37,13 @@ public class Club {
      * @return l'ensemble des plongées non conformes
      */
     public Set<Plongee> plongeesNonConformes() {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+         Set<Plongee> nonConforme = new HashSet<>();
+         for(Plongee p : activites) {
+        	 if(!(p.estConforme())){
+        		 nonConforme.add(p);
+        	 }
+         }
+         return nonConforme;
     }
 
     /**
@@ -39,8 +51,8 @@ public class Club {
      * @param p la nouvelle plongée
      */
     public void organisePlongee(Plongee p) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        activites.add(p);
+        p.setOrganisateur(this);
     }
     
     
@@ -79,6 +91,10 @@ public class Club {
     @Override
     public String toString() {
         return "Club{" + "président=" + president + ", nom=" + nom + ", adresse=" + adresse + ", telephone=" + telephone + '}';
+    }
+    
+    public void ajouterEmploye(Embauche m) {
+    	employes.add(m);
     }
 
 }
