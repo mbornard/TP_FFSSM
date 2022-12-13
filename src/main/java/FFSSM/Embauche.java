@@ -83,7 +83,6 @@ public class Embauche implements Comparable{
 	@Override
 	public int compareTo(Object o) {
 		Embauche embauche = (Embauche) o;
-		if(this.fin != null) return 0;
 		return this.getDebut().isAfter(embauche.debut) ? 1 : -1;
 	}
     

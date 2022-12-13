@@ -23,10 +23,17 @@ public class Moniteur extends Plongeur {
      * @return l'employeur actuel de ce moniteur sous la forme d'un Optional
      */
     public Optional<Club> employeurActuel() {
-    	Embauche employeur = employeurs.get(employeurs.size()-1);
-    	if(employeur.estTerminee()) {
+    	ArrayList<Embauche> list = new ArrayList<>();
+    	for(Embauche e : employeurs) {
+    		if(!e.estTerminee()) {
+    			list.add(e);
+    		}
+    	}
+    	if(list.size() == 0) {
     		return Optional.empty();
     	}
+    	Embauche employeur = list.get(list.size()-1);
+
     	return Optional.ofNullable(employeur.getEmployeur());
     	
     }

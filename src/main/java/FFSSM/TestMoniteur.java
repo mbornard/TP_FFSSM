@@ -44,5 +44,12 @@ public class TestMoniteur {
 		assertEquals(m.employeurActuel().get(), c);
 	}
 	
+	@Test
+	public void testNouvelleEmbaucheTerminee() {
+		Embauche e = new Embauche(LocalDate.of(2021, 12, 25), m, c);
+		e.terminer(LocalDate.now());
+		assertEquals(m.employeurActuel().get(), c2);
+	}
+	
 	
 }
